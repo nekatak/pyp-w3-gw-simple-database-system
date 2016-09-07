@@ -2,6 +2,7 @@ import os
 import json
 from .config import BASE_DB_FILE_PATH
 from datetime import date
+from .exceptions import ValidationError
 
 def create_database(db_name):
     return Make_db(db_name)
@@ -13,6 +14,9 @@ def connect_database(db_name):
 class Make_db(object):
     def __init__(self, db_name):
         self.db_name=db_name
+        if os.path.exists(BASE_DB_FILE_PATH + db_name):
+            message='Database with name '+'"'+db_name+'"' +' already exists.'
+            raise ValidationError(message)
         if not os.path.exists(BASE_DB_FILE_PATH + db_name):
             os.makedirs(BASE_DB_FILE_PATH + db_name)
 
