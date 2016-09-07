@@ -54,7 +54,7 @@ class SimpleDatabaseTestCase(unittest.TestCase):
                                      'Database with name "library" already exists.'):
             create_database('library')
 
-    def test_connect_existing_database(self):
+    def test_connect_existing_database(self):#############na ftiaxo
         db = create_database('test-db')
         db.create_table('authors', columns=[
             {'name': 'id', 'type': 'int'},
@@ -111,7 +111,7 @@ class SimpleDatabaseTestCase(unittest.TestCase):
         with self.assertRaisesRegexp(ValidationError, error_msg):
             self.db.authors.insert(3, 'Julio Cortázar', '1914-8-26', 'ARG', False)  # must be a date object
 
-    def test_query(self):
+    def test_query(self):#######################################
         self.db.authors.insert(3, 'Julio Cortázar', date(1914, 8, 26), 'ARG', False)
         self.assertEqual(self.db.authors.count(), 3)
         gen = self.db.authors.query(nationality='ARG')
@@ -121,11 +121,11 @@ class SimpleDatabaseTestCase(unittest.TestCase):
             count += 1
         self.assertEqual(count, 2)
 
-    def test_query_not_match(self):
+    def test_query_not_match(self):##########################
         gen = self.db.authors.query(nationality='UYU')
         self.assertEqual(len([author for author in gen]), 0)
 
-    def test_all(self):
+    def test_all(self):#############################
         gen = self.db.authors.all()
         self.assertTrue(isinstance(gen, types.GeneratorType))
         borges = next(gen)

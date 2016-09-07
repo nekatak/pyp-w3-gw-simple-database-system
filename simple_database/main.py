@@ -60,7 +60,8 @@ class Table(object):
         for item in self.columns["structure"]:
             name = item["name"]
             if type(args[i]) is not eval(item["type"]):
-                raise ValidationError('Invalid type of field %s: Given %s"str", expected %s"date"')%(name, type(args[i]), item["type"])
+                message = 'Invalid type of field "%s": Given "%s", expected "%s"'%(name, type(args[i]).__name__, item["type"])
+                raise ValidationError(message)
             val = args[i]
             if type(args[i]) is date:
                 val=str(args[i])
