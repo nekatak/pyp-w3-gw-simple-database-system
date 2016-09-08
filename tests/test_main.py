@@ -54,8 +54,8 @@ class SimpleDatabaseTestCase(unittest.TestCase):
                                      'Database with name "library" already exists.'):
             create_database('library')
 
-    def test_connect_existing_database(self):#############na ftiaxo
-        db = create_database('test-db')
+    def test_connect_existing_database(self):
+        db = create_database('testtt-db')
         db.create_table('authors', columns=[
             {'name': 'id', 'type': 'int'},
             {'name': 'name', 'type': 'str'},
@@ -66,7 +66,7 @@ class SimpleDatabaseTestCase(unittest.TestCase):
         db.authors.insert(1, 'Jorge Luis Borges', date(1899, 8, 24), 'ARG', False)
         self.assertEqual(db.authors.count(), 1)
 
-        new_db = connect_database('test-db')
+        new_db = connect_database('testtt-db')
         self.assertEqual(new_db.show_tables(), ['authors'])
         self.assertEqual(new_db.authors.count(), 1)
 
