@@ -16,16 +16,16 @@ def connect_database(db_name):
     new_db=Make_db(db_name)
     path = BASE_DB_FILE_PATH + db_name
     for file in os.listdir(path):
-        print(file)
+        #print(file)
         fout=open(path+"/"+file, "rt")
         data_of_file=fout.read()
         data=json.loads(data_of_file, object_pairs_hook=OrderedDict)
         new_table=new_db.create_table(file, data['structure'])
         for elem in data["rows"]:
             new_values=[]
-            print(list(data["rows"]))
+            #print(list(data["rows"]))
             for x in elem.values():
-                print x
+                #print x
                 if type(x) is not int and type(x) is not bool and re.match('\d+-\d+-\d+', x):
                     x=datetime.strptime(x,'%Y-%m-%d').date()
                     new_values.append(x)
