@@ -123,7 +123,7 @@ class Table(object):
         i=0
         while True:
             if i<len(self.columns["rows"]):
-                yield self.columns["rows"][i]##olo lathos prepei na gyrna TableObject
+                yield TableObject(self.columns["rows"][i])##olo lathos prepei na gyrna TableObject
                 i+=1
             else:
                 raise StopIteration()
