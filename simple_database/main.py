@@ -114,7 +114,7 @@ class Table(object):
         #print (self.columns['rows'][1]['id'])
         arr=[]
         for x in self.columns["rows"]:
-            if kwargs.keys()[0] in x:
+            if list(kwargs.keys())[0] in x:
                 if x[list(kwargs.keys())[0]]==list(kwargs.values())[0]:
                     arr.append(TableObject(x))
         return arr
